@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" /> 
+	<meta http-equiv="Content-Language" content="pl" /> 
+	<meta name="Author" content="Jakub Pisarski" /> 
+	<title>Moje hobby to genealogia</title> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>	
+	<table>
+		<tr>
+			<td><a href="Strona_glowna.html"><b><i>Strona główna</i></b></a></td>
+			<td><a href="Dlaczego_genealogia.html"><b><i>Dlaczego genealogia?</i></b></a></td>
+			<td><a href="Gdzie_szukac.html"><b><i>Gdzie szukać?</i></b></a></td>	
+			<td><a href="Na_co_uwazac.html"><b><i>Na co uważać?</i></b></a></td>
+			<td><a href="Drzewo_genealogiczne.html"><b><i>Drzewo genealogiczne</i></b></a></td>
+			<td><a href="Historia_mojej_rodziny.html"><b><i>Historia mojej rodziny</i></b></a></td>
+			<td><a href="Kontakt.html"><b><i>Kontakt</i></b></td>
+		</tr>
+	</table>
+	
+	<div><br><br><br><br></div>
+	<center>
+	<div id="animacjaTestowa1" class="test-block">Kliknij, a się powiększę</div>
+	
+	<script>
+		
+		$("#animacjaTestowa1").on("click", function(){
+			$(this).animate({
+				width: "500px",
+				opacity: 0.4,
+				fontSize: "3em",
+				borderwidth: "10px"
+			}, 1500);
+		});
+		
+	</script>
+	
+	<div><br><br><br><br></div>
+	<div id="animacjaTestowa2" class="test-block"> Najedź kursorem, a się powiększe </div>
+	
+	<script>
+	
+		$("#animacjaTestowa2").on({
+			"mouseover" : function() {
+				$(this).animate({
+					width: 300
+				}, 800);
+			},
+			"mouseout" : function() {
+				$(this).animate({
+					width: 200
+				}, 800);
+			}
+		});		
+	</script>
+	
+	<div><br><br><br><br></div>
+	<div id="animacjaTestowa3" class="test-block"> Kikaj, abym urósł </div>
+	
+	<script>
+	
+		$("#animacjaTestowa3").on("click", function() {
+			if(!$(this).is(":animated")) {
+				$(this).animate({
+					width: "+=" + 50,
+					height: "+=" + 10,
+					upacity: "-=" + 0.1,
+					duration : 3000
+				});
+			}
+		});		
+	</script>
+	</center>
+	
+	
+	</body>
+</html>
