@@ -36,7 +36,7 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 		// include($strona);
         // $strona = '';
         if($_GET['idp'] == '') 
-        {$strona = $PokazPodstrone(1);}
+        {$strona = PokazPodstrone(1);}
         // if($_GET['idp'] == 'dlaczego_genealogia') 
         // {$strona = './html/dlaczego_genealogia.html';}
         // if($_GET['idp'] == 'drzewo_genealogiczne') 
