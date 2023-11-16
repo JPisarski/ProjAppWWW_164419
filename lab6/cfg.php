@@ -1,11 +1,15 @@
 
 <?php
-	$dbhost = 'localhost';
-	$dbuser = 'root';
-	$dbpass = '';
-	$baza = 'moja_strona';
-	
-	$link = mysql_connect($dbhost, $dbuser, $dbpass);
-	if (!$link) echo '<b>przerwane połączenie </b>';
-	if(!mysql_select_db($baza)) echo 'nie wybrano bazy';
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
 ?>

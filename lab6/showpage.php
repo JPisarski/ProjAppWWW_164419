@@ -3,7 +3,7 @@
 function PokazPodstrone($id)
 {
 	$id_clear = htmlspecialchars($id);
-	$query = "SELECT * FROM page_list WHERE id='$id_clear' LIMIT 1";
+	$query = "SELECT page_content FROM page_list WHERE id='$id_clear' LIMIT 1";
 	$result = mysql_query($query);
 	$row = mysql_fetch_array($result);
 	
@@ -13,7 +13,7 @@ function PokazPodstrone($id)
 	}
 	else
 	{
-		$web - $row['page_content'];
+		$web = $row['page_content'];
 	}
 	return $web;
 }

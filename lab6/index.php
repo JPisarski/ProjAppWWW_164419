@@ -32,35 +32,35 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
         </tr>
 	</table>	
     <?php
-	
-		include($strona);
-        $strona = '';
+        include 'cfg.php';
+		// include($strona);
+        // $strona = '';
         if($_GET['idp'] == '') 
-        {$strona = './html/glowna.html';}
-        if($_GET['idp'] == 'dlaczego_genealogia') 
-        {$strona = './html/dlaczego_genealogia.html';}
-        if($_GET['idp'] == 'drzewo_genealogiczne') 
-        {$strona = './html/drzewo_genealogiczne.html';}
-        if($_GET['idp'] == 'gdzie_szukac') 
-        {$strona = './html/gdzie_szukac.html';}
-        if($_GET['idp'] == 'historia_mojej_rodziny') 
-        {$strona = './html/historia_mojej_rodziny.html';}
-        if($_GET['idp'] == 'kontakt') 
-        {$strona = './html/kontakt.html';}
-        if($_GET['idp'] == 'na_co_uwazac')
-        {$strona = './html/na_co_uwazac.html';}
-        if($_GET['idp'] == 'filmy')
-        {$strona = './html/filmy.html';}
-		if($_GET['idp'] == 'skrypty')
-        {$strona = './html/skrypty.html';}
-		if($_GET['idp'] == 'jq')
-        {$strona = './html/jq.html';}
+        {$strona = $PokazPodstrone(1);}
+        // if($_GET['idp'] == 'dlaczego_genealogia') 
+        // {$strona = './html/dlaczego_genealogia.html';}
+        // if($_GET['idp'] == 'drzewo_genealogiczne') 
+        // {$strona = './html/drzewo_genealogiczne.html';}
+        // if($_GET['idp'] == 'gdzie_szukac') 
+        // {$strona = './html/gdzie_szukac.html';}
+        // if($_GET['idp'] == 'historia_mojej_rodziny') 
+        // {$strona = './html/historia_mojej_rodziny.html';}
+        // if($_GET['idp'] == 'kontakt') 
+        // {$strona = './html/kontakt.html';}
+        // if($_GET['idp'] == 'na_co_uwazac')
+        // {$strona = './html/na_co_uwazac.html';}
+        // if($_GET['idp'] == 'filmy')
+        // {$strona = './html/filmy.html';}
+		// if($_GET['idp'] == 'skrypty')
+        // {$strona = './html/skrypty.html';}
+		// if($_GET['idp'] == 'jq')
+        // {$strona = './html/jq.html';}
 
-		include 'cfg.php';
-        if(file_exists($strona))
-        {
-        	include($strona);
-        }
+		
+        // if(file_exists($strona))
+        // {
+        // 	include($strona);
+        // }
         ?>
         
         <div class="footer">
