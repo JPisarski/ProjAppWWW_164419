@@ -1,11 +1,24 @@
 <?php
 
+
+include('cfg.php')
+
 function PokazKontakt()
 {
-	
+	echo '
+	<form method="post">
+		<label for="email">Adres e-mail: </label>
+		<input type="text" name="email" required><br/>
+		<label for="temat">Temat: </label>
+		<input type="text" name="temat" required><br/>
+		<label for="tresc">Treść wiadomości: </label>
+		<textarea name="tresc" required></textarea><br>
+		<input type="submit" name="wyslj" value="Wyślij wiadomość">
+	</form>
+	';
 }
 
-function WyslijMailKontakt($odbiorca)
+function WyslijMailKontakt()
 {
 	if(empty($_POST['temat']) || empty($_POST['tresc']) || empty($_POST['email']))
 	{
