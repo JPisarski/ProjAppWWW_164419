@@ -11,8 +11,8 @@ function FormularzLogowania()
         <div class="logowanie">
             <form method="post" name="LoginForm" enctype="multipart/form-data" action="' . $_SERVER['REQUEST_URI'] . '">
                 <table class="logowanie">
-                    <tr><td class="kog4_t">[email]</td><td><input type="text" name="login_email" class="logowanie" /></td></tr>
-                    <tr><td class="log4_t">[haslo]</td><td><input type="password" name="login_pass" class="logowanie" /></td></tr>
+                    <tr><td class="kog4_t">[email]</td><td><input type="text" name="login" class="logowanie" /></td></tr>
+                    <tr><td class="log4_t">[haslo]</td><td><input type="password" name="pass" class="logowanie" /></td></tr>
                     <tr><td>&nbsp;</td><td><input type="submit" name="x1_submit" class="logowanie" value="zaloguj" /></td></tr>
                 </table>
             </form>
@@ -23,70 +23,59 @@ function FormularzLogowania()
     return $wynik;
 }
 
-function Logowanie($link)
+
+function ListaPodstron()
 {
-    if (isset($_POST['x1_submit'])) {
-        $mail = $_POST['login_email'];
-        $haslo = $_POST['login_pass'];
-
-        $query = "SELECT * FROM tabela_uzytkownikow WHERE email = '$mail' AND haslo = '$haslo' LIMIT 1";
-        $result = mysqli_query($link, $query);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            $_SESSION['status'] = 1;
-			session_write_close();
-            header("Location: admin.php");
-            exit();
-            echo "Logowanie udane! <br></br>";
-        } else {
-            echo "Niepoprawne dane logowania <br></br>";
-            $_SESSION['status'] = 2;
-        }
-    }
-}
-
-
-
-function ListaPodstron($link)
-{
+	global $link;
     if (!isset($_SESSION['status']) || $_SESSION['status'] == 1) {
         $query = "SELECT * FROM page_list ORDER BY id ASC";
         $result = mysqli_query($link, $query);
 
         while ($row = mysqli_fetch_array($result)) {
-            echo $row['id'] . ' ' . $row['page_title'] . '<br/>';
+            echo $row['id'] . ' ' . $row['page_title'].' <a href="admin.php?funkcja=usun&id='.$row['id'].'">Usuń</a> <a href="admin.php?funkcja=edytuj&id='.$row['id'].'">Edytuj</a>  <br />';
         }
     }
+	if(isset($_GET['funkcja']) && $_GET['funkcja'] == 'usun'){
+		UsunPodstrone();
+	}
+	if(isset($_GET['funkcja']) && $_GET['funkcja'] == 'edytuj'){
+
+		EdytujPodstrone();
+	}
+	echo FormularzDodawania();
+	DodajNowaPodstrone();
+	
+	
+	
 }
 
-function FormularzEdycji()
+
+function EdytujPodstrone()
 {
-    $edit = '
+    global $link;
+	if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+	}
+	$query = "SELECT * FROM page_list WHERE id='$id' LIMIT 1";
+	$result = mysqli_query($link ,$query);
+	$row = mysqli_fetch_array($result);
+	echo '
     <div class="edycja">
         <h1 class="heading"><b>Edytuj podstronę<b/></h1>
         <div class="edycja">
             <form method="post" name="EditForm" enctype="multipart/form-data" action="' . $_SERVER['REQUEST_URI'] . '">
                 <table class="edycja">
-                    <tr><td class="edit_4t"><b>Id podstrony: <b/></td><td><input type="text" name="id_strony" class="edycja" /></td></tr>
-                    <tr><td class="edit_4t"><b>Tytuł podstrony: <b/></td><td><input type="text" name="page_title" class="edycja" /></td></tr>
-                    <tr><td class="edit_4t"><b>Treść podstrony: <b/></td><td><input type="text" name="page_content" class="edycja" /></td></tr>
+                    <tr><td class="edit_4t"><b>Tytuł podstrony: <b/></td><td><input type="text" name="page_title" class="edycja" value='.$row['page_title'].' /></td></tr>
+                    <tr><td class="edit_4t"><b>Treść podstrony: <b/></td><td><textarea rows=50 cols=100 name="page_content" class="edycja" />'.$row['page_content'].'</textarea></td></tr>
                     <tr><td class="edit_4t"><b>Status podstrony: <b/></td><td><input type="checkbox" name="status" class="edycja" /></td></tr>
-                    <tr><td>&nbsp;</td><td><input type="submit" name="x2_submit" class="edycja" value="zmien" /></td></tr>
+                    <tr><td>&nbsp;</td><td><input type="submit" name="x2_submit" class="edycja" value="Edytuj" /></td></tr>
                 </table>
             </form>
         </div>
     </div>
     ';
-
-    return $edit;
-}
-
-function EdytujPodstrone()
-{
-    global $link;
-
-    if (isset($_POST['x2_submit'])) {
-        $id = $_POST['id_strony'];
+    if (isset($_POST['x2_submit'])&& isset($_GET['id'])) {
+        $id = $_GET['id'];
         $tytul = $_POST['page_title'];
         $tresc = $_POST['page_content'];
         $status = isset($_POST['status']) ? 1 : 0;
@@ -151,30 +140,12 @@ function DodajNowaPodstrone()
 }
 
 
-function FormularzUsuwania()
-{
-    $remove = '
-    <div class="usun">
-        <h1 class="heading"><b>Usuń podstronę<b/></h1>
-        <div class="usun">
-            <form method="post" name="DeleteForm" enctype="multipart/form-data" action="' . $_SERVER['REQUEST_URI'] . '">
-                <table class="usun">
-                    <tr><td class="rem_4t"><b>Id podstrony: <b/></td><td><input type="text" name="id_remove" class="usun" /></td></tr>
-                    <tr><td>&nbsp;</td><td><input type="submit" name="x4_submit" class="usun" value="usun" /></td></tr>
-                </table>
-            </form>
-        </div>
-    </div>
-    ';
-
-    return $remove;
-}
 
 function UsunPodstrone()
 {
     global $link;
-    if (isset($_POST['x4_submit'])) {
-        $id = $_POST['id_remove'];
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
 
         $query = "DELETE FROM page_list WHERE id = $id LIMIT 1";
         $result = mysqli_query($link, $query);
@@ -189,22 +160,26 @@ function UsunPodstrone()
     }
 }
 
-if (isset($_SESSION['status']) && $_SESSION['status'] == 1) {
-    echo "Jesteś zalogowany";
-	echo "<br/><br/>";
-} else {
-    echo FormularzLogowania();
-    Logowanie($link);
+
+if(isset($_SESSION['status_logowania']) && $_SESSION['status_logowania'] == 1){
+	echo 'Jesteś zalogowany i masz dostęp do metod administracyjnych. </br>';
+	ListaPodstron();
+	echo '<a href="wyloguj.php">Wyloguj się</a>';
+} 
+else {
+	echo FormularzLogowania();
 }
 
-if (isset($_SESSION['status']) && $_SESSION['status'] == 1) {
-    ListaPodstron($link);
-    echo FormularzEdycji();
-    EdytujPodstrone();
-    echo FormularzDodawania();
-    DodajNowaPodstrone();
-    echo FormularzUsuwania();
-    UsunPodstrone();
+if(isset($_POST['login']) && isset($_POST['pass']))
+{
+	if($_POST['login'] == $login && $_POST['pass'] == $pass){
+		$_SESSION['status_logowania'] = 1;
+		header("Location: admin.php");
+	}
+	else{
+		echo 'Błędne dane. Spróbuj jeszcze raz.';
+	}
 }
+
 
 ?>

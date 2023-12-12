@@ -8,4 +8,7 @@
 	$link = mysqli_connect($dbhost, $dbuser, $dbpass);
 	if(!$link) echo '<b>przerwane połączenie </b>';
 	if(!mysqli_select_db($link, $baza)) echo 'nie wybrano bazy';
+	
+	$login = 'jpisarski';
+	$pass = '123PL';
 ?>
