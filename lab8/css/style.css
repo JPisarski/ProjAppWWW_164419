@@ -1,4 +1,3 @@
-
 .test-block{
 	width:200px;
 	border: 2px solid rgba(71,236,30, 1);
@@ -29,6 +28,13 @@ img {
 	margin-bottom: 8px;
 	margin-right: 8px;
 }
+.footer{
+	float: left;
+	padding-top: 10px;
+	text-align: center;
+	bottom: 100px;
+	width: 100%;
+}
 .naglowek{
 	text-align: center;
 }
@@ -37,28 +43,21 @@ img {
 }
 .tresc{
 	text-align: justify;
+}
 
+.kolorek{
+	color: #0e8c35;
+}
+.filmy{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 table {
 	border: 2px solid black; 
 	border-collapse: collapse;
 	width: 100%;
 	background-color: #7dff8e;
-}
-.kolorek{
-	color: #0e8c35;
-}
-.footer{
-	float: left;
-	padding-top: 10px;
-	text-align: center;
-	bottom: 0px;
-	width: 100%;
-}
-.filmy{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 }
 td {
 	padding: 15px;
