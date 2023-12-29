@@ -38,32 +38,31 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
         if($_GET['idp'] == '') 
         {echo PokazPodstrone(1);}
         if($_GET['idp'] == 'dlaczego_genealogia') 
-        {echo PokazPodstrone(5);}
-        if($_GET['idp'] == 'drzewo_genealogiczne') 
-        {echo PokazPodstrone(4);}
-        if($_GET['idp'] == 'gdzie_szukac') 
         {echo PokazPodstrone(2);}
-        if($_GET['idp'] == 'historia_mojej_rodziny') 
-        {echo PokazPodstrone(6);}
-        if($_GET['idp'] == 'kontakt') 
-        {echo PokazPodstrone(8);}
-        if($_GET['idp'] == 'na_co_uwazac')
-        {echo PokazPodstrone(9);}
-        if($_GET['idp'] == 'filmy')
+		if($_GET['idp'] == 'gdzie_szukac') 
         {echo PokazPodstrone(3);}
-		if($_GET['idp'] == 'skrypty')
-        {echo PokazPodstrone(10);}
-		if($_GET['idp'] == 'jq')
+        if($_GET['idp'] == 'jq')
+        {echo PokazPodstrone(4);}
+        if($_GET['idp'] == 'skrypty')
+        {echo PokazPodstrone(5);}
+		if($_GET['idp'] == 'drzewo_genealogiczne')
+        {echo PokazPodstrone(6);}
+		if($_GET['idp'] == 'historia_mojej_rodziny') 
         {echo PokazPodstrone(7);}
-
-        ?>
-        
+		if($_GET['idp'] == 'na_co_uwazac')
+        {echo PokazPodstrone(8);}
+		if($_GET['idp'] == 'filmy')
+        {echo PokazPodstrone(9);}
+		if($_GET['idp'] == 'kontakt')
+        {echo PokazPodstrone(10);}
+    ?>
+		
         <div class="footer">
            <?php
             $nr_indeksu = '164419';
             $nrGrupy = '3';
         
-            echo 'Autor: Jakub Pisarski '.$nr_indeksu.' grupa '.$nrGrupy.' <br /><br />';
+            echo 'Autor: Jakub Pisarski '.$nr_indeksu.' grupa '.$nrGrupy.' <br/><br/>';
             ?>
         </div>   
 
