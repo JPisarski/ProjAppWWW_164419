@@ -1,5 +1,10 @@
 <?php
 
+// funkcja PokazPodstrone($id) łączy się z bazą danych o nazwie 'moja_strona',
+// następnie wyszukuje podstronę o danym id w bazie,
+// jeśli nie istnieje odpowiednia podstrona, zwracany jest komunikat '[nie_znaleziono_strony]',
+// jeśli istnieje odpowiednia podstrona, zwracana jest treść podstrony.
+
 function PokazPodstrone($id)
 {
 	$dbhost = 'localhost';
