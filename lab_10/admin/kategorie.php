@@ -1,6 +1,14 @@
+<link rel="stylesheet" href="../css/style_admin.css">
+
 <?php
 
+
+// załączamy zawartość pliku cfg.php
+
 include('../cfg.php');
+
+// funkcja DodajKategorie() wyświetla formularz do dodawania kategorii,
+// następnie dodaje kategorię według danych podanych we wcześniej wspomnianym formularzu
 
 function DodajKategorie()
 {
@@ -39,6 +47,8 @@ function DodajKategorie()
     }
 }
 
+// funkcja FormularzDoUsuwania() wyświetla formularz potrzebny do usuwania strony
+
 function FormularzDoUsuwania()
 {
 	echo '
@@ -54,13 +64,15 @@ function FormularzDoUsuwania()
     ';	
 }
 
+// funkcja UsunKategorie($id) usuwa kategorie
+// o id wskazanym jako argument i wszystkie podkategorie
+
 function UsunKategorie($id)
 {	
 	global $link;
 
 	$query = "SELECT id FROM categories WHERE mother = '$id'";
     $result = mysqli_query($link, $query);
-	
 	if($result)
 	{
 		while($row = mysqli_fetch_array($result))
@@ -77,20 +89,8 @@ function UsunKategorie($id)
 	}
 }
 
-function FormularzDoEdytowania()
-{
-	echo '
-    <div>
-        <h1 class="naglowek"><b>Edytuj kategorię<b/></h1>
-            <form method="post" action="'.$_SERVER['REQUEST_URI'].'">
-                <table>
-                    
-                    <tr><td></td><td><input type="submit" name="edytowanie" value="Edytuj" /></td></tr>
-                </table>
-            </form>
-    </div>
-    ';
-}
+// funkcja EdytujKategorie() wyświetla formularz potrzebny do edytowania kategorii
+// następnie edytuje kategorię według danych podanych we wcześniej wspomnianym formularzu
 
 function EdytujKategorie()
 {
@@ -98,7 +98,7 @@ function EdytujKategorie()
 		
 	echo '
 	<div>
-		<h2 class="naglowek"><b>Edycja kategorii<b/></h2>
+		<h1 class="naglowek"><b>Edycja kategorii<b/></h1>
 			<form method="post" action="'.$_SERVER['REQUEST_URI'].'">
 				<table>
 					<tr><td><b>Id kategorii: <b/></td><td><input type="text" name="id2" required /></td></tr>
@@ -116,15 +116,15 @@ function EdytujKategorie()
 		$nazwa = $_POST['name'];
 		$matka = $_POST['mother'];
 		
-		$query = "SELECT * FROM categories WHERE id = '$id'";
+		$query = "SELECT * FROM categories WHERE id = '$id' LIMIT 1";
 		$result = mysqli_query($link, $query);
 		$row = mysqli_fetch_array($result);
-		
 		if(is_null($row))
 		{
-			echo 'Nie istnieje kategoria o id '.$id;
+			echo '<center>Nie istnieje kategoria o id '.$id.'!</center>';
 			exit();
 		}
+		
 		$query = "UPDATE categories SET name = '$nazwa', mother = '$matka' WHERE id = '$id' LIMIT 1";
 		$result = mysqli_query($link, $query);
 		if($result) 
@@ -139,6 +139,8 @@ function EdytujKategorie()
 	}   
 }
 
+// funkcja PokazKategorie($mother, $ile) wyświetla drzewko kategorii
+
 function PokazKategorie($mother = 0, $ile = 0)
 {
 	global $link;
@@ -152,20 +154,24 @@ function PokazKategorie($mother = 0, $ile = 0)
 			$brak = 1;
 			for($i=0; $i<$ile; $i++)
 			{
-					echo '&nbsp;&nbsp;&nbsp;>>>>>';
+					echo '&nbsp;&nbsp;&nbsp;<span style="color: #0000FF;">>>>>></span>';
 			}
-			echo ' '.$row['id'].' '.$row['name'].'<br><br>';
+			echo ' <b><span style="color:#008000;">'.$row['id'].'</span> '.$row['name'].'</b><br><br>';
 			PokazKategorie($row['id'], $ile+1);
 		}
 		if($brak == 0 && $ile == 0)
 		{
-			echo "</center>Brak kategorii</center>";
+			echo "</center><b>Brak kategorii<b/></center>";
 		}
 	}
 }
 
-echo '<h1 class="naglowek">Lista kategorii</h1>';
+// wywołujemy funkcje PokazKategorie(), DodajKategorie(), FormularzDoUsuwania()
+// UsunKategorie() i EdytujKategorie()
+
+echo '<h1 class="naglowek">Lista kategorii</h1><p style="margin-left: 44%;">';
 PokazKategorie();
+echo '</p>';
 DodajKategorie();
 FormularzDoUsuwania();
 if(isset($_POST['usuwanie']))
@@ -173,9 +179,8 @@ if(isset($_POST['usuwanie']))
 	$id = $_POST['id1'];
 	UsunKategorie($id);
 	echo "<script>window.location.href='kategorie.php';</script>";
-    exit();
+	exit();
 }
 EdytujKategorie();
-
 
 ?>

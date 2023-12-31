@@ -194,14 +194,17 @@ function UsunPodstrone()
 // sprawdzamy, czy jesteśmy zalogowania
 // jeśli jesteśmy zalogowani, to wyświetla się nam odpowiedni komunikat,
 // wywołuje się funkcja ListaPodstron(), która umożliwia wywołanie funkcji EdytujPodstrone()
-// oraz UsunPodstrone(), również wywołuje funkcję DodajNowaPodstrone()
+// oraz UsunPodstrone(), również wywołuje funkcję DodajNowaPodstrone(),
+// przekierowania do Kontaktu i Panelu dla Kategorii
 // oraz wyświetla napis Wyloguj się, który umożliwia wylogowanie się
 
 if(isset($_SESSION['status_logowania']) && $_SESSION['status_logowania'] == 1)
 {
 	echo '<center><br>Jesteś zalogowany i masz dostęp do metod administracyjnych.<br><br></center>';
 	ListaPodstron();
-	echo '<h2 class=naglowek><a href="wyloguj.php">Wyloguj się</a></h2>';
+	echo '<h2 class="naglowek"><a class="linki" href="contact.php">Kontakt</a><br></h2>';
+	echo '<h2 class="naglowek"><a class="linki" href="kategorie.php">Zarządzaj kategoriami</a><br></h2>';
+	echo '<h2 class="naglowek"><a href="wyloguj.php">Wyloguj się</a></h2>';
 } 
 else 
 {

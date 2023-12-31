@@ -5,7 +5,6 @@
     top: 45%;
     transform: translate(-50%, -50%);
 }
-
 .naglowek{
 	text-align: center;
 	color: #0b5499;
@@ -26,11 +25,14 @@
 	background-color: #2cf58a;
 	border: 2px solid black;
 }
+.linki{
+	text-decoration: none;  
+	color: #0b5499;
+}
 a{
 	text-decoration: none;  
 	color: black;
 }
-
 table {
 	border-collapse: collapse;
 	margin-left: auto;
