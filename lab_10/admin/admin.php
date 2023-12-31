@@ -16,7 +16,7 @@ function FormularzLogowania()
     <div class="logowanie">
         <h1 class="naglowek">Panel CMS</h1>
             <form method="post" action="' . $_SERVER['REQUEST_URI'] . '">
-                <table class="">
+                <table>
                     <tr><td>Login: </td><td><input type="text" name="login" /></td></tr>
                     <tr><td>Hasło: </td><td><input type="password" name="pass" /></td></tr>
                     <tr><td></td><td><input type="submit" name="logowanie" value="Zaloguj się" /></td></tr>
@@ -89,7 +89,7 @@ function EdytujPodstrone()
     <div>
         <h1 class="naglowek"><b>Edytuj podstronę<b/></h1>
             <form method="post" action="'.$_SERVER['REQUEST_URI'].'">
-                <table ">
+                <table>
                     <tr><td><b>Tytuł podstrony: <b/></td><td><input type="text" name="page_title" size="108" value='.$row['page_title'].' /></td></tr>
                     <tr><td><b>Treść podstrony: <b/></td><td><textarea rows=20 cols=100 name="page_content"/>'.$row['page_content'].'</textarea></td></tr>
                     <tr><td><b>Status podstrony: <b/></td><td><input type="checkbox" name="status" checked /></td></tr>
@@ -136,7 +136,7 @@ function DodajNowaPodstrone()
     <div>
         <h1 class="naglowek"><b>Dodaj podstronę<b/></h1>
             <form method="post" action="'.$_SERVER['REQUEST_URI'].'">
-                <table class="dodaj">
+                <table>
                     <tr><td><b>Tytuł podstrony: <b/></td><td><input type="text" name="page_title_add" size="108"/></td></tr>
                     <tr><td><b>Treść podstrony: <b/></td><td><textarea rows=20 cols=100 name="page_content_add" /></textarea></td></tr>
                     <tr><td><b>Status podstrony: <b/></td><td><input type="checkbox" name="status_add" checked /></td></tr>
