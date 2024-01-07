@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+
+
+<head>
+	<script src="./js/kolorujtlo.js" type="text/javascript"></script>
+	<script src="./js/timedate.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<title>Moje hobby to genealogia</title> 
+	<link rel="stylesheet" href="./css/style_skrypty.css" />
+	
+</head>
+
+<body onload="startclock()">
+
+	<div class="naglowek"> 
+	<br><br><br><br><br>
+	<h1> Wybierz kolor tła na tej podstronie</h1>
+	<br>
+	<FORM METHOD="POST" NAME="background">
+		<INPUT TYPE="button" VALUE="zwyczajny" ONCLICK="changeBackground('#7dbfe5')">
+		<INPUT TYPE="button" VALUE="żółty" ONCLICK="changeBackground('#FFF000')">
+		<INPUT TYPE="button" VALUE="czarny" ONCLICK="changeBackground('#000000')">
+		<INPUT TYPE="button" VALUE="biały" ONCLICK="changeBackground('#FFFFFF')">
+		<INPUT TYPE="button" VALUE="zielony" ONCLICK="changeBackground('#00FF00')">
+		<INPUT TYPE="button" VALUE="niebieski" ONCLICK="changeBackground('#0000FF')">
+		<INPUT TYPE="button" VALUE="pomarańczowy" ONCLICK="changeBackground('#FF8000')">
+		<INPUT TYPE="button" VALUE="szary" ONCLICK="changeBackground('#c0c0c0')">
+		<INPUT TYPE="button" VALUE="czerwony" ONCLICK="changeBackground('#FF0000')">
+	</FORM>
+	<br><br>
+	<h1>Zegarek</h1>
+	<div id="zegarek"></div>
+	<div id="data"></div></div><br><br><br><br><br><center>
+	<h2><a href="index.php?idp=skrypty">Wróć do poprzedniej strony</a></h2><br></center>
+
+
+
